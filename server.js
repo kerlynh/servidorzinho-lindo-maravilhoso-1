@@ -16,6 +16,16 @@ servidor.post('/comidas', (request, response) => {
   response.status(200).send(novaComida)
 })
 
+servidor.patch('/comidas/:id', (request, response) => {
+  const id = request.params.id
+  const sucesso = controller.update(id, request.body)
+    if(sucesso) {
+      response.sendStatus(204) 
+    } else {
+      response.sendStatus(404)
+    }
+})
+
 servidor.delete('/comidas/:id', (request, response) => {
   controller.remove(request.params.id)
   response.sendStatus(204)

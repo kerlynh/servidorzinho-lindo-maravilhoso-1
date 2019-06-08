@@ -16,8 +16,35 @@ const remove = (id) => {
   })
 }
 
+const update = (id, comida) => {
+  let comidaCadastrada = getAll().find(comida => {
+    return comida.id === id
+  })
+  if(comidaCadastrada === undefined){
+    return false
+  } else {
+  
+  // if(comida.nome !== undefined) {
+  //   comidaCadastrada.nome = comida.nome
+  // }
+  
+  // if(comida.descricao !== undefined) {
+  //   comidaCadastrada.descricao = comida.descricao
+  // }
+  const comidaAtualizada = {
+    ...comidaCadastrada, // spread operator do ES6
+    ...comida
+  }
+  remove(id)
+  getAll().push(comidaAtualizada)
+  
+  return true
+}
+}
+
 module.exports = {
   getAll,
   add,
-  remove
+  remove,
+  update
 }
