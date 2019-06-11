@@ -1,13 +1,35 @@
-const { comidas } = require('./ComidasRepository')
+const { connect } = require('./ComidasRepository')
+const comidasModel =  require('./ComidasSchema')
+connect()
 
-const getAll = () => {
-  return comidas.pratosFavoritos
+const getAll = async () => {
+  //pegue todas as comidas do mongodb usando mongoose
+  //nome da collections:comida
+  return comidasModel.find((error, comidas) => {
+    return comidas
+  })
+}
+
+const getById = (id) => {
+  // const comidaCadastrada = getAll().find(comida => {
+  //   return comida.id === id
+  // })
+  // return comidaCadastrada
+  return comidasModel.findById(
+    id,
+    (error, comida) => {
+      return comida
+    }
+  )
 }
 
 const add = (comida) => {
-  comida.id = Math.random().toString(36).substr(-8)
-  getAll().push(comida)
-  return comida
+  //TODO: usar o mongoose para inserir uma nova comida
+  const novaComida = new comidasModel ({
+    nome: comida.nome,
+    descicao: comida.descricao
+  })
+  novaComida.save()
 }
 
 const remove = (id) => {
@@ -46,5 +68,6 @@ module.exports = {
   getAll,
   add,
   remove,
-  update
+  update,
+  getById
 }
