@@ -1,21 +1,19 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
+// string de conexão:
+// mongodb://dominio:porta/nome_database
+const MONGO_URL = "mongodb://localhost:27017/reprograma";
 
-//string de conexão:
-//mongodb://dominio:porta/nome_database
-const MONGO_URL = "mongodb://localhost:27017/reprograma"
-
-function connect() {
-  //TODO: conectar no nosso mongo usando a MONGO_URL
+function connect () {
   mongoose.connect(MONGO_URL,
-    {useNewUrlParser: true},
+    { useNewUrlParser: true },
     function (error) {
       if(error) {
-        console.error("Deu erro", error)
+        console.error("Deu erro: ", error)
       } else {
         console.log("Conectamos no mongodb!!! o/")
       }
-    }  
-  )
+    }
+  );
 }
 
-module.exports = {connect}
+module.exports = { connect }
