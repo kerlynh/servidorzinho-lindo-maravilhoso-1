@@ -23,7 +23,6 @@ const add = async (comida) => {
   return novaComida.save()
 }
 
-
 const remove = async (id) => {
   return comidasModel.findByIdAndDelete(id)
 }
