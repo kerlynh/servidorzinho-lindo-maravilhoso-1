@@ -5,9 +5,9 @@ const Schema = mongoose.Schema
 const comidasSchema = new Schema({
     _id: {type: mongoose.Schema.Types.ObjectId, auto: true},
     nome: {type: String, required: true},
-    descricao: {type: String},
+    descricao: {type: String, required: true},
     valor: {type: Number},
-    imagem: {type: String}
+    imagem: {type: String, required: true}
 })
 
 const comidasModel = mongoose.model("comidas", comidasSchema)
